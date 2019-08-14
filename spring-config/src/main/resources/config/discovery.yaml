@@ -1,0 +1,17 @@
+eureka:
+    client:
+        fetch-registry: false
+        register-with-eureka: false
+        serviceUrl:
+            defaultZone: http://localhost:8082/eureka/
+
+    instance:
+        hostname: localhost
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+server:
+    port: 8082
+
+spring:
+    application:
+        name: discovery
