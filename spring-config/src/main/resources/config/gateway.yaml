@@ -1,19 +1,21 @@
 server:
-  port: 8085
+  port: 8080
 
 spring:
   application:
     name: gateway
-
   cloud:
-    config:
-      name: gateway
-
     gateway:
       routes:
         - id: app_router
           uri: lb://app
           predicates:
-            - Path=/spring-app
+            - Path=/app/**
+          filters:
+            - StripPrefix=1
+        - id: feign_router
+          uri: lb://feign
+          predicates:
+             - Path=/feign/**
           filters:
             - StripPrefix=1

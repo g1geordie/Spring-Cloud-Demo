@@ -8,5 +8,4 @@ spring:
             discovery:
                 enabled: true
                 service-id: config
-            name: gateway
-
+            name: feign

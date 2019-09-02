@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          #your kafka server
+          brokers: ohs3:9092
+          zkNodes: ohs3:2181
+          configuration:
+            auto:
+              offset:
+                reset: latest

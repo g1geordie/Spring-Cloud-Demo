@@ -8,5 +8,6 @@ spring:
             discovery:
                 enabled: true
                 service-id: config
-            name: gateway
-
+            name: app
+    profiles:
+        active: bus
