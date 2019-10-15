@@ -12,3 +12,23 @@ spring:
 
 page:
   helloMsg: "my name is geordie"
+
+security:
+  url: localhost:8888
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: AppClient
+      clientSecret: AppClientSecret
+      accessTokenUri: http://${security.url}/oauth/token
+      userAuthorizationUri: http://${security.url}/oauth/authorize
+      scope: all
+    resource:
+      userInfoUri: http://${security.url}/user/me
+server:
+  port: 8088
+  servlet:
+    session:
+      cookie:
+        name: "APP_SESSION${random.int[1,10000]}"

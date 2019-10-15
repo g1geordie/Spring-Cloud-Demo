@@ -14,6 +14,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request) {
-        return    "hello , "+request.getServerName()+":"+request.getServerPort();
+        return "hello , " + request.getServerName() + ":" + request.getServerPort();
     }
 }

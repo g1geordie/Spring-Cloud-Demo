@@ -1,10 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE' apply false
+    id 'org.springframework.boot' version '2.1.1.RELEASE' apply false
     id 'java'
 }
 
 allprojects {
     apply plugin: 'maven-publish'
+
     if(it.name !='spring-bus'){
         apply plugin: 'org.springframework.boot'
     }
@@ -56,6 +57,7 @@ configurations {
 }
 
 dependencies{
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-deployer-local', version: '2.0.4.RELEASE'
     compile'org.springframework.boot:spring-boot-starter-log4j2'

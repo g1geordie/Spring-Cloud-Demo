@@ -1,10 +1,22 @@
 eureka:
     client:
         region: default
-        registryFetchIntervalSeconds: 5
         serviceUrl:
             defaultZone: http://localhost:8082/eureka/
 
 spring:
     application:
-        name: testConfig
+        name: cloud_launcher
+
+server.port: 9999
+
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+
+
+config:
+    path: /home/geordie/桌面/config

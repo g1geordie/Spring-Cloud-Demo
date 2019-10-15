@@ -1,6 +1,8 @@
 server:
   port: 8080
 
+security.url: localhost:8888
+
 spring:
   application:
     name: gateway
@@ -13,9 +15,40 @@ spring:
             - Path=/app/**
           filters:
             - StripPrefix=1
+
+        - id: secure_app_router
+          uri: lb://app
+          predicates:
+            - Path=/secure/**
+          filters:
+            - TokenRelay=
+
         - id: feign_router
           uri: lb://feign
           predicates:
-             - Path=/feign/**
+            - Path=/feign/**
           filters:
             - StripPrefix=1
+
+  security:
+    basic:
+      enabled: false
+    oauth2:
+      client:
+        provider:
+          gauth:
+            authorization-uri: http://${security.url}/oauth/authorize
+            token-uri: http://${security.url}/oauth/token
+            user-info-authentication-method: header
+            user-info-uri: http://${security.url}/user/me
+            clientName: gateway
+            userNameAttribute: name
+        registration:
+          geordie:
+            authorization-grant-type: authorization_code
+            redirect-uri-template: '{baseUrl}/login/oauth2/code/{registrationId}'
+            client-id: AppClient
+            client-secret: AppClientSecret
+            provider: gauth
+            scope: all
+

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: auth
+
+server:
+  port: 8888
+  servlet:
+    session:
+      cookie:
+        name: "RESOURCE_SESSIONID"
+
+security:
+  basic:
+    enabled: false

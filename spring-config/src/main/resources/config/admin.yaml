@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: admin
+
+server.port: 9000
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
